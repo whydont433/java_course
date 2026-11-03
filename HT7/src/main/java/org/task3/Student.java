@@ -1,0 +1,18 @@
+package org.task3;
+
+/** Неизменяемая модель студента. */
+public record Student(int id, String name, double grade) {
+
+    /** Создаёт студента и проверяет корректность полей. */
+    public Student {
+        if (id <= 0) {
+            throw new IllegalArgumentException("id должен быть положительным: " + id);
+        }
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Имя не может быть пустым");
+        }
+        if (!(grade >= 0.0 && grade <= 10.0)) {
+            throw new IllegalArgumentException("Оценка должна быть от 0 до 10: " + grade);
+        }
+    }
+}
